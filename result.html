@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Heart Disease Prediction Result</h1>
+        </div>
+    </header>
+
+    <section id="result">
+        <div class="container">
+            <h2>Prediction Result</h2>
+            <div id="prediction-result"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Heart Disease Prediction. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Retrieve form data from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const age = urlParams.get('age');
+        const cholesterol = urlParams.get('cholesterol');
+        const bloodPressure = urlParams.get('blood_pressure');
+
+        // Simple simulation of prediction logic
+        const riskScore = (parseInt(age) + parseInt(cholesterol) + parseInt(bloodPressure)) / 3;
+        
+        let resultMessage = "Your heart disease risk is low.";
+        if (riskScore > 150) {
+            resultMessage = "Your heart disease risk is high. Please consult a doctor.";
+        }
+
+        // Display the result
+        document.getElementById('prediction-result').innerHTML = `
+            <p>Age: ${age}</p>
+            <p>Cholesterol Level: ${cholesterol}</p>
+            <p>Blood Pressure: ${bloodPressure}</p>
+            <h3>${resultMessage}</h3>
+        `;
+    </script>
+</body>
+</html>
